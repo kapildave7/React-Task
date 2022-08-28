@@ -1,3 +1,8 @@
+
+
+
+
+
 import "./App.css";
 import data from "./data.json";
 import * as React from "react";
@@ -30,6 +35,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
+
 function App() {
   function getMappedData(data) {
     const mappedData = [...data];
@@ -39,8 +45,7 @@ function App() {
       if (element.pools && element.pools.length > 0) {
         element["level"] = element.pools.length;
         element.pools.forEach(
-          (pool) =>
-            (element.total_staked += parseFloat(pool.staked_amount.toString()))
+          (pool) => (element.total_staked += pool.staked_amount)
         );
       }
       if (element.deep_childrens.length > 0) {
@@ -50,10 +55,7 @@ function App() {
           element.deep_childrens.pools.length > 0
         ) {
           element.deep_childrens.pools.forEach(
-            (pool) =>
-              (element.total_staked += parseFloat(
-                pool.staked_amount
-              ).toString())
+            (pool) => (element.total_staked += pool.staked_amount)
           );
         }
       }
